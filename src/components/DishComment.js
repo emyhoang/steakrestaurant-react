@@ -11,7 +11,10 @@ class DishComment extends React.Component {
       <>
         <li>{comment}</li>
         <li className='mt-4 mb-4'>
-          -- {author}, {date}
+          -- {author},{' '}
+          {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(
+            new Date(Date.parse(date))
+          )}
         </li>
       </>
     );
