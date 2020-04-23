@@ -17,19 +17,21 @@ class DishDetail extends React.Component {
 
     if (dish != null) {
       return (
-        <div className='row'>
-          <div className='col-12 col-md-5 mt-1'>
-            <Card>
-              <CardImg top src={dish.image} alt={dish.name} />
-              <CardBody>
-                <CardTitle className='font-weight-bold'>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-              </CardBody>
-            </Card>
-          </div>
-          <div className='col col-md mt-1'>
-            <h4 className='text-bold'>Comments</h4>
-            <div>{this.renderComment()}</div>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-12 col-md-5 mt-1'>
+              <Card>
+                <CardImg top src={dish.image} alt={dish.name} />
+                <CardBody>
+                  <CardTitle className='font-weight-bold'>{dish.name}</CardTitle>
+                  <CardText>{dish.description}</CardText>
+                </CardBody>
+              </Card>
+            </div>
+            <div className='col col-md mt-1'>
+              <h4>Comments</h4>
+              <div className='font-weight-bold'>{this.renderComment()}</div>
+            </div>
           </div>
         </div>
       );
