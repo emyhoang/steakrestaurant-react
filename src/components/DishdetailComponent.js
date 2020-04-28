@@ -1,11 +1,12 @@
 import React from 'react';
-import { Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 import DishComment from './DishComment';
+import { Link } from 'react-router-dom';
 
 const RenderComment = (props) => {
-  console.log(`RenderComment ${JSON.stringify(props)}`);
-
-  return props.dishSelected.comments.map((comment) => {
+  //REMOVE WHEN DONE
+  // console.log(`RenderComment ${JSON.stringify(props)}`);\
+  return props.comment.map((comment) => {
     return (
       <ul key={comment.id} className='list-unstyled'>
         <DishComment {...comment} />
@@ -15,28 +16,46 @@ const RenderComment = (props) => {
 };
 
 const DishDetail = (props) => {
-  console.log(`DishDetail ${JSON.stringify(props)}`);
+  //REMOVE WHEN DONE
+  // console.log(`DishDetail ${JSON.stringify(props)}`);
+  const { dishSelected: dish, comments: comment } = props;
 
-  const { dishSelected: dish } = props;
+  const RenderDish = () => {
+    return (
+      <>
+        <Card>
+          <CardImg top src={dish.image} alt={dish.name} />
+          <CardBody>
+            <CardTitle className='font-weight-bold'>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
+      </>
+    );
+  };
 
   if (dish != null) {
     return (
       <div className='container'>
         <div className='row'>
-          <div className='col-12 col-md-5 mt-1'>
-            <Card>
-              <CardImg top src={dish.image} alt={dish.name} />
-              <CardBody>
-                <CardTitle className='font-weight-bold'>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-              </CardBody>
-            </Card>
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to='/menu'>Menu</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+          </Breadcrumb>
+          <div className='col-12'>
+            <h3>{dish.name}</h3>
+            <hr />
           </div>
-          <div className='col col-md mt-1'>
+        </div>
+        <div className='row'>
+          <div className='col-12 col-md-5 m-1'>
+            <RenderDish dish={dish} />
+          </div>
+          <div className='col col-md-5 m-1 font-weight-bold'>
             <h4>Comments</h4>
-            <div className='font-weight-bold'>
-              <RenderComment dishSelected={dish} />
-            </div>
+            <RenderComment comment={comment} />
           </div>
         </div>
       </div>
