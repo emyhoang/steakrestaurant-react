@@ -2,10 +2,9 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 import DishComment from './DishComment';
 import { Link } from 'react-router-dom';
+import CommentForm from './CommentForm';
 
 const RenderComment = (props) => {
-  //REMOVE WHEN DONE
-  // console.log(`RenderComment ${JSON.stringify(props)}`);\
   return props.comment.map((comment) => {
     return (
       <ul key={comment.id} className='list-unstyled'>
@@ -56,6 +55,7 @@ const DishDetail = (props) => {
           <div className='col col-md-5 m-1 font-weight-bold'>
             <h4>Comments</h4>
             <RenderComment comment={comment} />
+            <CommentForm />
           </div>
         </div>
       </div>
