@@ -7,7 +7,7 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
-function CommentForm(props) {
+function CommentForm() {
 
   const [isModalOpen, setIsModalOpen] = useState(0);
 
