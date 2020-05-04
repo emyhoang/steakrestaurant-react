@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Label, Row, Col } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
-
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
-function CommentForm() {
-
+function CommentForm(props) {
   const [isModalOpen, setIsModalOpen] = useState(0);
+  const { dishId, addComment } = props;
 
   const toggleModal = () => {
-    //REMOVE WHEN DONE
-    // console.log(`@@@Before Toggle Modal ${JSON.stringify(isModalOpen)} `);
     setIsModalOpen(!isModalOpen);
-    //REMOVE WHEN DONE
-    // console.log(`@@@After Toggle Modal ${JSON.stringify(isModalOpen)} `);
   };
+  const handleSubmit = (values) => {
+    toggleModal();
+    addComment(dishId, values.rating, values.author, values.comment);
+  };
+
   return (
     <>
       <Button outline onClick={toggleModal}>
@@ -28,7 +28,7 @@ function CommentForm() {
         <ModalHeader toggle={toggleModal}>Submit Comment</ModalHeader>
         <ModalBody>
           <div className='col-12'>
-            <LocalForm>
+            <LocalForm onSubmit={(values) => handleSubmit(values)}>
               <Row className='form-group'>
                 <Label htmlFor='rating' md={12}>
                   Rating
@@ -44,15 +44,15 @@ function CommentForm() {
                 </Col>
               </Row>
               <Row className='form-group'>
-                <Label htmlFor='name' md={12}>
+                <Label htmlFor='author' md={12}>
                   {' '}
                   Your Name
                 </Label>
                 <Col md={12}>
                   <Control.text
-                    model='.name'
-                    id='name'
-                    name='name'
+                    model='.author'
+                    id='author'
+                    name='author'
                     placeholder='Your Name'
                     className='form-control'
                     validators={{
@@ -63,7 +63,7 @@ function CommentForm() {
                   />
                   <Errors
                     className='text-danger'
-                    model='.name'
+                    model='.author'
                     show='touched'
                     messages={{
                       required: 'Required',

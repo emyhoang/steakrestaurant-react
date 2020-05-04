@@ -15,9 +15,7 @@ const RenderComment = (props) => {
 };
 
 const DishDetail = (props) => {
-  //REMOVE WHEN DONE
-  // console.log(`DishDetail ${JSON.stringify(props)}`);
-  const { dishSelected: dish, comments: comment } = props;
+  const { dishSelected: dish, comments: comment, addComment } = props;
 
   const RenderDish = () => {
     return (
@@ -55,7 +53,7 @@ const DishDetail = (props) => {
           <div className='col col-md-5 m-1 font-weight-bold'>
             <h4>Comments</h4>
             <RenderComment comment={comment} />
-            <CommentForm />
+            <CommentForm dishId={dish.id} addComment={addComment} />
           </div>
         </div>
       </div>
