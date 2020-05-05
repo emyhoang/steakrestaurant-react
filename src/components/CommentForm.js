@@ -7,7 +7,7 @@ const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
 function CommentForm(props) {
-  const [isModalOpen, setIsModalOpen] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { dishId, addComment } = props;
 
   const toggleModal = () => {
