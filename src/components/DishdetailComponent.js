@@ -3,6 +3,7 @@ import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardBody, CardTitle, CardTex
 import DishComment from './DishComment';
 import { Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
+import { Loading } from './LoadingComponent';
 
 const RenderComment = (props) => {
   return props.comment.map((comment) => {
@@ -15,7 +16,7 @@ const RenderComment = (props) => {
 };
 
 const DishDetail = (props) => {
-  const { dishSelected: dish, comments: comment, addComment } = props;
+  const { dishSelected: dish, comments: comment, addComment, isLoading, errMess } = props;
 
   const RenderDish = () => {
     return (
@@ -31,7 +32,23 @@ const DishDetail = (props) => {
     );
   };
 
-  if (dish != null) {
+  if (isLoading) {
+    return (
+      <div className='container'>
+        <div className='row'>
+          <Loading />
+        </div>
+      </div>
+    );
+  } else if (errMess) {
+    return (
+      <div className='container'>
+        <div className='row'>
+          <h4>{errMess}</h4>
+        </div>
+      </div>
+    );
+  } else if (dish != null) {
     return (
       <div className='container'>
         <div className='row'>
