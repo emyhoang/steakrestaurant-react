@@ -10,7 +10,7 @@ export const Dishes = (state = { isLoading: true, errMess: null, dishes: [] }, a
       return { ...state, isLoading: true, errMess: null, dishes: [] };
 
     case ActionTypes.DISHES_FAILED:
-      console.log('@@HIT Error Dishes Failed Fetch');
+      // console.log('@@HIT Error Dishes Failed Fetch');
       return { ...state, isLoading: false, errMess: action.payload, dishes: [] };
 
     default:

@@ -19,14 +19,14 @@ export const fetchDishes = () => (dispatch) => {
         if (response.ok) {
           return response;
         } else {
-          console.log('SEE Error1');
+          // console.log('SEE Error1');
           var error = new Error('Error ' + response.status + ': ' + response.statusText);
           error.response = response;
           throw error;
         }
       },
       (error) => {
-        console.log('@@@Error2 ' + error.message);
+        // console.log('@@@Error2 ' + error.message);
         var errmess = new Error(error.message);
         throw errmess;
       }
