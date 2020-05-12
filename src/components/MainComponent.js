@@ -51,6 +51,7 @@ class Main extends React.Component {
 
   render() {
     const HomePage = () => {
+      console.log('###Dishes Error Message ' + this.props.dishes.errMess);
       return (
         <Home
           dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
