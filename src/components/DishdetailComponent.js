@@ -17,7 +17,7 @@ const RenderComment = (props) => {
 };
 
 const DishDetail = (props) => {
-  const { dishSelected: dish, comments: comment, addComment, isLoading, errMess } = props;
+  const { dishSelected: dish, comments: comment, postComment, isLoading, errMess } = props;
 
   const RenderDish = () => {
     return (
@@ -71,7 +71,7 @@ const DishDetail = (props) => {
           <div className='col col-md-5 m-1 font-weight-bold'>
             <h4>Comments</h4>
             <RenderComment comment={comment} />
-            <CommentForm dishId={dish.id} addComment={addComment} />
+            <CommentForm dishId={dish.id} postComment={postComment} />
           </div>
         </div>
       </div>

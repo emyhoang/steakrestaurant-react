@@ -4,6 +4,12 @@ class DishComment extends React.Component {
   render() {
     const { comment, author, date } = this.props;
 
+    var dateFormatted = new Date(date).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+
     if (comment === null) {
       return <div></div>;
     }
@@ -11,10 +17,7 @@ class DishComment extends React.Component {
       <>
         <li>{comment}</li>
         <li className='mt-2 mb-4'>
-          -- {author},{' '}
-          {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(
-            new Date(Date.parse(date))
-          )}
+          -- {author}, {dateFormatted}
         </li>
       </>
     );

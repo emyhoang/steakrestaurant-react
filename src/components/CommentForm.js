@@ -8,14 +8,14 @@ const minLength = (len) => (val) => val && val.length >= len;
 
 function CommentForm(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { dishId, addComment } = props;
+  const { dishId, postComment } = props;
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
   const handleSubmit = (values) => {
     toggleModal();
-    addComment(dishId, values.rating, values.author, values.comment);
+    postComment(dishId, values.rating, values.author, values.comment);
   };
 
   return (
