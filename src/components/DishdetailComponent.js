@@ -5,13 +5,18 @@ import { Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const RenderComment = (props) => {
   return props.comment.map((comment) => {
     return (
-      <ul key={comment.id} className='list-unstyled'>
-        <DishComment {...comment} />
-      </ul>
+      <Stagger in>
+        <ul key={comment.id} className='list-unstyled'>
+          <Fade in>
+            <DishComment {...comment} />
+          </Fade>
+        </ul>
+      </Stagger>
     );
   });
 };
@@ -22,13 +27,20 @@ const DishDetail = (props) => {
   const RenderDish = () => {
     return (
       <>
-        <Card>
-          <CardImg top src={baseUrl + dish.image} alt={dish.name} />
-          <CardBody>
-            <CardTitle className='font-weight-bold'>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
+        <FadeTransform
+          in
+          transformProps={{
+            exitTransform: 'scale(0.5) translateY(-50%)',
+          }}
+        >
+          <Card>
+            <CardImg top src={baseUrl + dish.image} alt={dish.name} />
+            <CardBody>
+              <CardTitle className='font-weight-bold'>{dish.name}</CardTitle>
+              <CardText>{dish.description}</CardText>
+            </CardBody>
+          </Card>
+        </FadeTransform>
       </>
     );
   };
