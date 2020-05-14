@@ -15,10 +15,10 @@ class DishComment extends React.Component {
     }
     return (
       <>
-        <li>{comment}</li>
-        <li className='mt-2 mb-4'>
-          -- {author}, {dateFormatted}
-        </li>
+          <li>{comment}</li>
+          <li className='mt-2 mb-4'>
+            -- {author}, {dateFormatted}
+          </li>
       </>
     );
   }
