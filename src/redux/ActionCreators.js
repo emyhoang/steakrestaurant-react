@@ -14,7 +14,6 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     comment: comment,
   };
   newComment.date = new Date().toISOString();
-  console.log(`Hit POSTCOMMENT ${newComment}`);
 
   return fetch(baseUrl + 'comments', {
     method: 'POST',
@@ -54,14 +53,12 @@ export const fetchDishes = () => (dispatch) => {
         if (response.ok) {
           return response;
         } else {
-          // console.log('SEE Error1');
           var error = new Error('Error ' + response.status + ': ' + response.statusText);
           error.response = response;
           throw error;
         }
       },
       (error) => {
-        // console.log('@@@Error2 ' + error.message);
         var errmess = new Error(error.message);
         throw errmess;
       }
@@ -189,4 +186,86 @@ export const leadersFailed = (errmess) => ({
 export const addLeaders = (leaders) => ({
   type: ActionTypes.ADD_LEADERS,
   payload: leaders,
+});
+
+export const addFeedbacks = (feedbacks) => ({
+  type: ActionTypes.ADD_FEEDBACKS,
+  payload: feedbacks,
+});
+
+export const feedbacksFailed = (errmess) => ({
+  type: ActionTypes.FEEDBACKS_FAILED,
+  payload: errmess,
+});
+
+export const fetchFeedbacks = () => (dispatch) => {
+  return fetch(baseUrl + 'feedback')
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then((response) => response.json())
+    .then((feedbacks) => dispatch(addFeedbacks(feedbacks)))
+    .catch((error) => dispatch(feedbacksFailed(error.message)));
+};
+
+export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
+  const newFeedback = {
+    firstname: firstname,
+    lastname: lastname,
+    telnum: telnum,
+    email: email,
+    agree: agree,
+    contactType: contactType,
+    message: message,
+  };
+  newFeedback.date = new Date().toISOString();
+
+  return fetch(baseUrl + 'feedback', {
+    method: 'POST',
+    body: JSON.stringify(newFeedback),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'same-origin',
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      dispatch(addFeedback(response));
+      alert(`Thank you for your feedback! ${JSON.stringify(response)}`);
+    })
+    .catch((error) => {
+      console.log('post feedbacks', error.message);
+      alert('Your feedback could not be posed\nError: ' + error.message);
+    });
+};
+
+export const addFeedback = (feedback) => ({
+  type: ActionTypes.ADD_FEEDBACK,
+  payload: feedback,
 });

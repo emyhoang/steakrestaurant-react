@@ -16,8 +16,7 @@ class Contact extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log('Current State is: ' + JSON.stringify(values));
-    alert('Current State is: ' + JSON.stringify(values));
+    this.props.postFeedback(values);
     this.props.resetFeedbackForm();
   }
 
@@ -70,7 +69,7 @@ class Contact extends React.Component {
             <h3>Send us your Feedback</h3>
           </div>
           <div className='col-12 col-md-9'>
-            <Form model='feedback' onSubmit={(values) => this.handleSubmit(values)}>
+            <Form model='feedbacks' onSubmit={(val) => this.handleSubmit(val)}>
               <Row className='form-group'>
                 <Label htmlFor='firstname' md={2}>
                   First Name
