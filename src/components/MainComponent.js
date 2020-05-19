@@ -108,29 +108,30 @@ class Main extends React.Component {
     };
 
     return (
-      <>
-        <Header />
-        <TransitionGroup>
-          <CSSTransition key={this.props.location.key} classNames='page' timeout={300}>
-            <Switch>
-              <Route path='/home' component={HomePage} />
-              <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
-              <Route path='/menu/:dishId' component={DishWithId} />
-              <Route
-                exact
-                path='/contactus'
-                component={() => (
-                  <Contact postFeedback={this.props.postFeedback} resetFeedbackForm={this.props.resetFeedbackForm} />
-                )}
-              />
-              <Route exact path='/aboutus' component={AboutPage} />
-              <Redirect to='/home' />
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-
-        <Footer />
-      </>
+      <div className='page-container'>
+        <div className='content-wrapper'>
+          <Header />
+          <TransitionGroup>
+            <CSSTransition key={this.props.location.key} classNames='page' timeout={300}>
+              <Switch>
+                <Route path='/home' component={HomePage} />
+                <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
+                <Route path='/menu/:dishId' component={DishWithId} />
+                <Route
+                  exact
+                  path='/contactus'
+                  component={() => (
+                    <Contact postFeedback={this.props.postFeedback} resetFeedbackForm={this.props.resetFeedbackForm} />
+                  )}
+                />
+                <Route exact path='/aboutus' component={AboutPage} />
+                <Redirect to='/home' />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        </div>
+          <Footer />
+      </div>
     );
   }
 }
