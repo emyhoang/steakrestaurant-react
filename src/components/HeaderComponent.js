@@ -6,7 +6,7 @@ import {
   NavbarToggler,
   Collapse,
   NavItem,
-  Jumbotron,
+  // Jumbotron,
   Modal,
   Button,
   ModalHeader,
@@ -63,37 +63,37 @@ class Header extends React.Component {
               <Nav navbar>
                 <NavItem>
                   <NavLink className='nav-link' to='/home'>
-                    Home
+                    HOME
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink className='nav-link' to='/aboutus'>
-                    About Us
+                    ABOUT US
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink className='nav-link' to='/menu'>
-                    Menu
+                    MENU
                   </NavLink>
                 </NavItem>
 
                 <NavItem>
                   <NavLink className='nav-link' to='/contactus'>
-                    Contact Us
+                    CONTACT US
                   </NavLink>
                 </NavItem>
               </Nav>
               <Nav className='ml-auto' navbar>
                 <NavItem>
-                  <Button outline color='warning' onClick={this.toggleModal}>
-                    <span className='fa fa-sign-in fa-lg'></span>Login
+                  <Button outline color='danger' onClick={this.toggleModal}>
+                    <span className='fa fa-sign-in fa-lg'></span>LOGIN
                   </Button>
                 </NavItem>
               </Nav>
             </Collapse>
           </div>
         </Navbar>
-        <Jumbotron>
+        {/* <Jumbotron>
           <div className='container'>
             <div className='row row-header'>
               <div className='col-12 col-sm-6'>
@@ -105,7 +105,7 @@ class Header extends React.Component {
               </div>
             </div>
           </div>
-        </Jumbotron>
+        </Jumbotron> */}
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
           <ModalBody>
