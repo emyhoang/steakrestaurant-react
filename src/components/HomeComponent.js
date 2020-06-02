@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Jumbotron } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform } from 'react-animation-components';
@@ -39,6 +39,23 @@ function Home(props) {
           <source src={HeroVideo} type='video/mp4' />
         </video>
       </div>
+
+      <Jumbotron>
+        <div className='container'>
+          <h4 className='display-4 text-center'>WELCOME TO VIVO STEAKHOUSE</h4>
+          <p className='lead text-center'>
+            We are an Australian-inspired steakhouse restaurant beloved worldwide. We pride ourselves on serving up
+            variety; our unbeatable steak cuts are complemented by delicious choices of chicken, ribs, seafood, and
+            pasta at a price for everyone. Our strategy? We're the leader of the pack by emphasizing consistently high
+            quality delicious food delivering a warm, welcoming environment. Our generous portions are moderately
+            priced. Our casual atmosphere couldn't be more transporting - it's like you're right there in the Australian
+            Outback.
+          </p>
+          <button className='btn btn-lg btn-warning text-center text-white'>Order Takeout</button>
+          <button className='btn btn-lg btn-danger ml-2 text-center'>Delivery</button>
+        </div>
+      </Jumbotron>
+
       <div className='container'>
         <div className='row align-items-center'>
           <div className='col-12 col-md m-1'>
